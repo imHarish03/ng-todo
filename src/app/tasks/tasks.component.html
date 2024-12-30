@@ -1,0 +1,22 @@
+@if(showAddTaskComponent) {
+<app-new-task (closeAddTask)="onCancelAddTask()" [userId]="userInfo.id" ></app-new-task>
+}
+
+<section id="tasks">
+    <header>
+        <h2>{{userInfo.name}}'s Tasks</h2>
+        <menu>
+            <button (click)="enableAddTaskComponent()"> Add Task</button>
+        </menu>
+    </header>
+
+    <ul>
+        @for (task of selectedUserTasks; track task.id) {
+        <li>
+            <app-task [taskId]="task.id" [title]="task.title" [dueDate]="task.dueDate" [summary]="task.summary"/>
+        </li>
+        }
+    </ul>
+
+
+</section>

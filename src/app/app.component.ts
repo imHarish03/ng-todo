@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DUMMY_USERS } from './dummy-users';
+import { User } from './user/user.model';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  standalone:false
 })
 export class AppComponent {
-  title = 'hello-world';
+
+  users = DUMMY_USERS;
+  selectedUserInfo!: User | null;
+
+  selectedUser(id: string): void {
+    console.log("Loading Selected userInfo in AppComponent");
+    this.selectedUserInfo = this.users.find((obj) => obj.id === id)!;
+  }
+
 }
